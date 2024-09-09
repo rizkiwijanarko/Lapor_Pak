@@ -52,6 +52,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/laporan', function () {
+        return view('admin.laporan');
+    });
+    Route::get('/laporan/{id}', function () {
+        return view('admin.detail-laporan');
+    });
+    // Route::get('/kategori', function () {
+    //     return view('admin.kategori');
+    // });
 
     //Users
     Route::get('users', 'UserController@index')->name('users');

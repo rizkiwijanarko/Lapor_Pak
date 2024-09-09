@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin')
+{{-- @extends('admin.layouts.admin')
 
 @section('content')
     <!-- page content -->
@@ -236,4 +236,17 @@
 @section('styles')
     @parent
     {{ Html::style(mix('assets/admin/css/dashboard.css')) }}
+@endsection --}}
+
+
+@extends('admin.layouts.app')
+
+@section('title', 'Home Page')
+
+@section('content')
+    <div class="p-10">
+        <h1>Welcome to the Home Page</h1>
+
+        {{ request()->path() }}
+    </div>
 @endsection
