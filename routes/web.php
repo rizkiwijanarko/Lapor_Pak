@@ -79,10 +79,10 @@ Route::group(['as' => 'protection.'], function () {
     Route::get('membership/clear-cache/', 'MembershipController@clearValidationCache')->name('membership.clear_validation_cache');
 });
 
-// Route::get('/about-us', function () {
-//     return view('about-us');
-// });
+Route::get('/about-us', function () {
+    return view('about-us');
+});
 
-// Route::get('/api', function () {
-//     return view('api');
-// });
+Route::get('/api', function () {
+    return view('api');
+});
