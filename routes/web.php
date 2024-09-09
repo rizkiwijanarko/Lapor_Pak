@@ -98,7 +98,7 @@ Route::get('/api', function () {
 
 // Send Email
 Route::get('/send-mail', function () {
-    Mail::raw('This is a test email using Resend SMTP', function ($message) {
+    Mail::raw('Kode anda adalah {}. Gunakan kode ini untuk melacak laporan anda', function ($message) {
         $message->to('rizkiwijanarko@students.unnes.ac.id')
                 ->subject('Test Email');
     });
