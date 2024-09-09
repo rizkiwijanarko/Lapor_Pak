@@ -56,4 +56,5 @@ class AppServiceProvider extends ServiceProvider
             $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
         }
     }
+    
 }

@@ -95,3 +95,13 @@ Route::get('/about-us', function () {
 Route::get('/api', function () {
     return view('api');
 });
+
+// Send Email
+Route::get('/send-mail', function () {
+    Mail::raw('This is a test email using Resend SMTP', function ($message) {
+        $message->to('rizkiwijanarko@students.unnes.ac.id')
+                ->subject('Test Email');
+    });
+
+    return 'Email sent successfully using Resend SMTP!';
+});

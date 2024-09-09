@@ -37,6 +37,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'resend' => [
+        'api_key' => env('RESEND_API_KEY'),
+    ],
+
+
     /*
      * Socialite Credentials
      * Redirect URL's need to be the same as specified on each network you set up this application on
