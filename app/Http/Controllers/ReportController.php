@@ -14,11 +14,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        
-        $reports = Report::all();
-
-        return response()->json($reports);
-
+        //
     }
 
     /**
@@ -39,21 +35,7 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'code' => 'required|string|max:255',
-            'category_event' => 'required|string|max:255',
-            'content' => 'required|string',
-            'media' => 'nullable|string|max:255',
-            'status' => 'required|in:belum diverifikasi,sudah diverifikasi,sudah selesai',
-        ]);
-
-        $report = Report::create($validated);
-
-        return response()->json([
-            'message' => 'Report created successfully',
-            'data' => $report
-        ], 201);
-
+        //
     }
 
     /**
@@ -101,51 +83,31 @@ class ReportController extends Controller
         //
     }
 
-    /**
-     * Get the total number of reports.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    
+
+    public function insert_report(array $data)
+    {
+        return Report::create($data);
+    }
+
+    public function get_all_reports()
+    {
+        return Report::all();
+    }
+
     public function get_total_reports()
     {
-        // Hitung total laporan
-        $totalReports = Report::count();
-
-        // Kembalikan respons dengan total laporan
-        return response()->json([
-            'total_reports' => $totalReports
-        ]);
+        return Report::count();
     }
 
-    /**
-     * Get the total number of not verified reports.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function get_total_not_verified_reports()
     {
-        // Hitung total laporan yang belum diverifikasi
-        $totalNotVerifiedReports = Report::where('status', 'belum diverifikasi')->count();
-
-        // Kembalikan respons dengan jumlah laporan yang belum diverifikasi
-        return response()->json([
-            'total_not_verified_reports' => $totalNotVerifiedReports
-        ]);
+        return Report::where('verified', false)->count();
     }
 
-    /**
-     * Get the total number of verified reports.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function get_total_verified_reports()
     {
-        // Hitung total laporan yang sudah diverifikasi
-        $totalVerifiedReports = Report::where('status', 'sudah diverifikasi')->count();
-
-        // Kembalikan respons dengan jumlah laporan yang sudah diverifikasi
-        return response()->json([
-            'total_verified_reports' => $totalVerifiedReports
-        ]);
+        return Report::where('verified', true)->count();
     }
 }
