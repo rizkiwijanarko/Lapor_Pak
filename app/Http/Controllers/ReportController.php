@@ -85,13 +85,13 @@ class ReportController extends Controller
 
     public function get_total_finished_reports(): int
     {
-        return Report::where('status', 'finished')->count();
+        return Report::where('status', 'sudah_selesai')->count();
 
     }
 
     public function get_total_cancelled_reports(): int
     {
-        return Report::where('status', 'cancelled')->count();
+        return Report::where('status', 'ditolak')->count();
     }
 
     public function get_monthly_reports_count(): array
