@@ -21,7 +21,7 @@
 
             <div class="border-t mt-4 mb-2 border-gray-300"></div>
 
-            <a href="#" class="flex gap-3 items-center w-full p-2 transition-all hover:bg-gray-100">
+            <a href="{{ route('logout') }}" class="flex gap-3 items-center w-full p-2 transition-all hover:bg-gray-100">
                 <box-icon name='log-out' color="gray"></box-icon>
                 <div class="text-gray-600 text-sm">Log Out</div>
             </a>
