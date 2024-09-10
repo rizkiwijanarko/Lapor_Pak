@@ -82,4 +82,53 @@ class ReportController extends Controller
     {
         //
     }
+
+    public function get_total_finished_reports(): int
+    {
+        return Report::where('status', 'finished')->count();
+
+    }
+
+    public function get_total_cancelled_reports(): int
+    {
+        return Report::where('status', 'cancelled')->count();
+    }
+
+    public function get_monthly_reports_count(): array
+    {
+        $reports = Report::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return $reports->map(function ($report) {
+            return [
+                'month' => $report->month,
+                'count' => $report->count,
+            ];
+        })->toArray();
+    }
+
+    public function get_yearly_reports_count(): array
+    {
+        $reports = Report::selectRaw('YEAR(created_at) as year, COUNT(*) as count')
+            ->groupBy('year')
+            ->orderBy('year')
+            ->get();
+
+        return $reports->map(function ($report) {
+            return [
+                'year' => $report->year,
+                'count' => $report->count,
+            ];
+        })->toArray();
+        
+    }
+
+    public function detail_report(Report $report, $id): View
+    {
+        $report = Report::find($id);
+        return view('admin.reports.detail', compact('report'));
+    }
 }
