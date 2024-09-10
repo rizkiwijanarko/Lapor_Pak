@@ -91,24 +91,27 @@ class ReportController extends Controller
         return Report::create($data);
     }
 
-    public function get_all_reports()
+
+    public function get_all_reports(): array
     {
-        return Report::all();
+        $reports = Report::all();
+
+        return $reports->toArray();
     }
 
-    public function get_total_reports()
+    public function get_total_reports(): int
     {
         return Report::count();
     }
 
-    public function get_total_not_verified_reports()
+    public function get_total_not_verified_reports(): int
     {
-        return Report::where('verified', false)->count();
+        return Report::where('status', 'belum_diverifikasi')->count();
     }
 
-    public function get_total_verified_reports()
+    public function get_total_verified_reports(): int
     {
-        return Report::where('verified', true)->count();
+        return Report::where('status', 'sudah_diverifikasi')->count();
     }
 
     public function get_total_finished_reports(): int
