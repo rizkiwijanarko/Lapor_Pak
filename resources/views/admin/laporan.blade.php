@@ -48,15 +48,18 @@
                         <div class="relative">
                             <button onclick="toggleStatus(1)" class="text-[10px] hover:bg-red-600 transition-all p-1 rounded bg-red-500 w-fit mx-auto whitespace-nowrap text-white">Belum Diverifikasi</button>
                             <div id="data-1" class="absolute p-1.5 hidden top-0 rounded border left-[calc(100%+4px)] w-52 bg-white flex flex-col">
-                                <a href="#" class="flex justify-between hover:bg-gray-200 p-2 rounded">
-                                    <div class="text-[10px] p-1 rounded bg-red-500 w-fit whitespace-nowrap text-white">Belum Diverifikasi</div>
+                                <a href="#" class="flex justify-between hover:bg-gray-100 p-2 rounded">
+                                    <div class="text-[10px] p-1 rounded bg-gray-500 w-fit whitespace-nowrap text-white">Belum Diverifikasi</div>
                                     <box-icon name='check' color='grey' ></box-icon>
                                 </a>
-                                <a href="#" class="flex justify-between hover:bg-gray-200 p-2 rounded">
+                                <a href="#" class="flex justify-between hover:bg-gray-100 p-2 rounded">
                                     <div class="text-[10px] p-1 rounded bg-yellow-500 w-fit whitespace-nowrap text-white">Sudah Diverifikasi</div>
                                 </a>
-                                <a href="#" class="flex justify-between hover:bg-gray-200 p-2 rounded">
+                                <a href="#" class="flex justify-between hover:bg-gray-100 p-2 rounded">
                                     <div class="text-[10px] p-1 rounded bg-green-500 w-fit whitespace-nowrap text-white">Sudah Selesai</div>
+                                </a>
+                                <a href="#" class="flex justify-between hover:bg-gray-100 p-2 rounded">
+                                    <div class="text-[10px] p-1 rounded bg-red-500 w-fit whitespace-nowrap text-white">Dibatalkan</div>
                                 </a>
                             </div>
                         </div>

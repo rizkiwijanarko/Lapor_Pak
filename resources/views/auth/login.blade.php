@@ -156,8 +156,7 @@
                         </div>
 
                         <div class="mb-6">
-                            <label class="mb-2 block font-medium text-gray-800">Re-type
-                                Password</label>
+                            <label class="mb-2 block font-medium text-gray-800">Password</label>
                             <div class="relative">
                                 <input type="password" placeholder="*******" name="password"
                                     value="{{ old('password') }}"
