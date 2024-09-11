@@ -11,7 +11,9 @@
         <h1 class="text-gray-700 mb-10 text-3xl font-semibold">Detail Laporan</h1>
 
         @if ($report->media)
-            <img src="{{ $report->media }}" class="w-[600px] rounded-lg object-cover mb-5" alt="">
+            <img src="{{ asset('storage/media/y3AEmhaK4R0dFfSogc891PFeIm2kSLmtLyjRaJKT.jpg') }}"
+                class="w-[600px] rounded-lg object-cover mb-5" alt="">
+            tes
         @endif
 
         <div class="flex gap-5 mb-3 items-center">

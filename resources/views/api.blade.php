@@ -23,14 +23,6 @@
     <header class="">
         <div class="px-4 mx-auto sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
-                <div class="flex-shrink-0">
-                    <a href="#" title="" class="flex">
-                        <img class="w-auto h-8"
-                            src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/logo.svg"
-                            alt="" />
-                    </a>
-                </div>
-
                 <button type="button"
                     class="inline-flex p-1 text-black transition-all duration-200 border border-black lg:hidden focus:bg-gray-100 hover:bg-gray-100">
                     <!-- Menu open: "hidden", Menu closed: "block" -->
@@ -86,11 +78,9 @@
                         makin kece!</p>
 
                     <div class="mt-10 sm:flex sm:items-center sm:space-x-8">
-                        <button onclick="toggleModal()"
-                            class="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-orange-500 hover:bg-orange-600 focus:bg-orange-600"
-                            role="button">Dapatkan API key</button>
 
-                        <a href="#" title=""
+
+                        <a href="#contoh_request" title=""
                             class="inline-flex gap-3 items-center mt-6 text-base font-semibold transition-all duration-200 sm:mt-0 hover:opacity-80">
                             <svg width="40px" height="40px" viewBox="-8 0 58 58" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -158,11 +148,10 @@
                     <pre>
                         <code class="rounded shadow">
 async function getData() {
-    const baseUrl = 'http://localhost:8000/api/v1/';
+    const baseUrl = 'http://localhost:8000/api/v1/get_data';
 
     // Create a new URL object
     const url = new URL(baseUrl);
-    url.searchParams.append('apikey', 'your_api_key');
 
     // Add optional query parameters
     url.searchParams.append('category', 'something');
@@ -211,17 +200,19 @@ async function getData() {
                         <td class="py-3 px-4 border border-gray-300 w-80 align-top">
                             <div>Kategori-kategori yang bisa digunakan:</div>
                             <div class="mt-2 flex flex-wrap gap-1">
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
-                                <pre class="px-2 rounded bg-gray-300 w-fit">satu</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">agama</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">kesehatan</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">ketertiban_umum</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">pekerjaan_umum_dan_penataan_ruang</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">pemberantasan_penyalahgunaan</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">peredaran_gelap_narkotika</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">prekursor_narkotika</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">kekerasan_di_satuan_pendidikan</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">politik_dan_hukum</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">peniadaan_mudik</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">perhubungan</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">perlindungan_konsumen</pre>
+                                <pre class="px-2 rounded bg-gray-300 w-fit">topik_lainnya</pre>
                             </div>
                         </td>
                     </tr>
@@ -330,10 +321,6 @@ async function getData() {
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="text-center xl:flex xl:items-center xl:justify-between xl:text-left">
                 <div class="xl:flex xl:items-center xl:justify-start">
-                    <img class="w-auto mx-auto h-7"
-                        src="https://cdn.rareblocks.xyz/collection/celebration/images/logo-alt-2.svg"
-                        alt="" />
-
                     <p class="mt-5 text-sm text-white xl:ml-6 xl:mt-0">© Copyright 2024 LaporPak API</p>
                 </div>
 
