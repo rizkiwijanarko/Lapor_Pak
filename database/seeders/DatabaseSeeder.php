@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Auth\ReportsSeeder;
+use Database\Seeders\ReportsSeeder;
 use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Auth\UsersRolesSeeder;
 use Database\Seeders\Auth\UsersSeeder;
-use Database\Seeders\Auth\ReportsSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
