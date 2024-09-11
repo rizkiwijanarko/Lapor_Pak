@@ -20,8 +20,7 @@
 <header class="container-fluid bg-white fixed-top">
     <div class="container d-flex justify-content-between align-items-center py-3">
         <div class="logo d-flex align-items-center">
-        <img src="{{ asset('images/logo.png') }}"
-        alt="LaporPak Logo" width="40" height="49">
+        <img src="{{ asset('images/logo.png')}}" alt="LaporPak Logo" width="40" height="49">
             <span class="ms-2 fw-bold fs-4" style="color: #395bd7;">LaporPak</span>
         </div>
         <nav>
