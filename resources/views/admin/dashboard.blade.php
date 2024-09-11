@@ -250,36 +250,36 @@
                 <div class="size-12 rounded-full bg-gray-100 flex justify-center items-center">
                     <box-icon type='solid' name='report' color="#3C50E0"></box-icon>
                 </div>
-                <div class="text-2xl mt-5 text-gray-800 font-semibold">23</div>
+                <div id="total" class="text-2xl mt-5 text-gray-800 font-semibold">0</div>
                 <div class="text-sm mt-2 text-gray-500">Total laporan</div>
             </div>
             <div class="bg-white shadow-lg w-full p-5">
                 <div class="size-12 rounded-full bg-gray-100 flex justify-center items-center">
                     <box-icon type='solid' name='time-five' color="#a85799"></box-icon>
                 </div>
-                <div class="text-2xl mt-5 text-gray-800 font-semibold">23</div>
+                <div id="total_not_verified" class="text-2xl mt-5 text-gray-800 font-semibold">0</div>
                 <div class="text-sm mt-2 text-gray-500">Belum diverifikasi</div>
             </div>
             <div class="bg-white shadow-lg w-full p-5">
                 <div class="size-12 rounded-full bg-gray-100 flex justify-center items-center">
                     <box-icon type='solid' name='badge-check' color="#a4d827"></box-icon>
                 </div>
-                <div class="text-2xl mt-5 text-gray-800 font-semibold">23</div>
+                <div id="total_verified" class="text-2xl mt-5 text-gray-800 font-semibold">0</div>
                 <div class="text-sm mt-2 text-gray-500">Sudah diverifikasi</div>
             </div>
             <div class="bg-white shadow-lg w-full p-5">
                 <div class="size-12 rounded-full bg-gray-100 flex justify-center items-center">
                     <box-icon name='target-lock' color="#5ca36e"></box-icon>
                 </div>
-                <div class="text-2xl mt-5 text-gray-800 font-semibold">23</div>
+                <div id="total_finished" class="text-2xl mt-5 text-gray-800 font-semibold">0</div>
                 <div class="text-sm mt-2 text-gray-500">Selesai</div>
             </div>
             <div class="bg-white shadow-lg w-full p-5">
                 <div class="size-12 rounded-full bg-gray-100 flex justify-center items-center">
                     <box-icon name='x' color="#e62f19"></box-icon>
                 </div>
-                <div class="text-2xl mt-5 text-gray-800 font-semibold">23</div>
-                <div class="text-sm mt-2 text-gray-500">Dibatalkan</div>
+                <div id="total_cancelled" class="text-2xl mt-5 text-gray-800 font-semibold">0</div>
+                <div class="text-sm mt-2 text-gray-500">Ditolak</div>
             </div>
         </div>
 
@@ -290,10 +290,12 @@
                 </div>
                 <div class="flex w-full max-w-45 justify-end">
                     <div class="inline-flex items-center rounded-md bg-gray-100 p-1.5">
-                        <button class="rounded px-3 py-1 text-xs bg-white font-medium text-black hover:bg-white">
+                        <button id="monthly-btn" onclick="showMonthlyData()"
+                            class="rounded px-3 py-1 text-xs bg-white font-medium text-black hover:bg-white">
                             Monthly
                         </button>
-                        <button class="rounded px-3 py-1 text-xs font-medium text-black hover:bg-white">
+                        <button id="yearly-btn" onclick="showYearlyData()"
+                            class="rounded px-3 py-1 text-xs font-medium text-black hover:bg-white">
                             Yearly
                         </button>
                     </div>
@@ -304,84 +306,35 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-5">
-            <div class="mt-10 bg-white p-10 shadow-lg border">
+        <div class="grid grid-cols-2 gap-5 mt-10">
+            {{-- <div class="mt-10 bg-white p-10 shadow-lg border">
 
                 <div class="text-gray-800 font-semibold text-lg mb-10">Total laporan per-kategori</div>
 
                 <div class="mb-2">
                     <div id="chartThree" class="flex justify-center mx-auto"></div>
                 </div>
-                <div class="flex flex-wrap items-center justify-center -mx-8 gap-y-3">
-                    <div class="w-full px-8 sm:w-1/2">
-                        <div class="flex items-center w-full">
-                            <span class="block w-full h-3 mr-2 rounded-full max-w-3 bg-primary"></span>
-                            <p class="flex justify-between w-full text-sm font-medium text-black dark:text-white">
-                                <span> Desktop </span>
-                                <span> 65% </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="w-full px-8 sm:w-1/2">
-                        <div class="flex items-center w-full">
-                            <span class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#6577F3]"></span>
-                            <p class="flex justify-between w-full text-sm font-medium text-black dark:text-white">
-                                <span> Tablet </span>
-                                <span> 34% </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="w-full px-8 sm:w-1/2">
-                        <div class="flex items-center w-full">
-                            <span class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8FD0EF]"></span>
-                            <p class="flex justify-between w-full text-sm font-medium text-black dark:text-white">
-                                <span> Mobile </span>
-                                <span> 45% </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="w-full px-8 sm:w-1/2">
-                        <div class="flex items-center w-full">
-                            <span class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0FADCF]"></span>
-                            <p class="flex justify-between w-full text-sm font-medium text-black dark:text-white">
-                                <span> Unknown </span>
-                                <span> 12% </span>
-                            </p>
-                        </div>
-                    </div>
+            </div> --}}
+            <div class="rounded-sm border bg-white p-10 shadow-lg border">
+                <div class="text-gray-800 font-semibold text-lg mb-10">Total laporan per-kategori</div>
+
+                <div>
+                    <div id="chartTwo" class="-mb-9 -ml-5"></div>
                 </div>
             </div>
 
-            <div class="mt-10 bg-white p-10 shadow-lg border">
+
+            <div class="bg-white p-10 shadow-lg border">
                 <div class="text-gray-800 font-semibold text-lg mb-10">Daerah dengan laporan terbanyak</div>
                 <table class="w-full text-sm">
                     <thead>
                         <tr>
                             <th class="bg-gray-100 text-start font-medium text-gray-600 p-3">Daerah</th>
-                            <th class="bg-gray-100 text-start font-medium text-gray-600 p-3">Jumlah laporan</th>
+                            <th class="bg-gray-100 text-start font-medium text-gray-600 p-3 whitespace-nowrap">Jumlah
+                                laporan</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-100">
-                            <td class="border-b-2 border-gray-100 p-3">Jawa Tengah</td>
-                            <td class="border-b-2 border-gray-100 p-3">30</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="border-b-2 border-gray-100 p-3">Jawa Tengah</td>
-                            <td class="border-b-2 border-gray-100 p-3">30</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="border-b-2 border-gray-100 p-3">Jawa Tengah</td>
-                            <td class="border-b-2 border-gray-100 p-3">30</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="border-b-2 border-gray-100 p-3">Jawa Tengah</td>
-                            <td class="border-b-2 border-gray-100 p-3">30</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="border-b-2 border-gray-100 p-3">Jawa Tengah</td>
-                            <td class="border-b-2 border-gray-100 p-3">30</td>
-                        </tr>
+                    <tbody id="top_province">
                     </tbody>
                 </table>
             </div>
@@ -395,173 +348,288 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
-        const chartOneOptions = {
-            series: [{
-                name: "Jumlah Laporan",
-                data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
-            }],
-            legend: {
-                show: false,
-                position: "top",
-                horizontalAlign: "left",
-            },
-            colors: ["#3C50E0", "#80CAEE"],
-            chart: {
-                fontFamily: "Satoshi, sans-serif",
-                height: 335,
-                type: "area",
-                dropShadow: {
-                    enabled: true,
-                    color: "#623CEA14",
-                    top: 10,
-                    blur: 4,
-                    left: 0,
-                    opacity: 0.1,
-                },
+        const monthlyBtn = document.querySelector('#monthly-btn')
+        const yearlyBtn = document.querySelector('#yearly-btn')
 
-                toolbar: {
+        let monthly_reports;
+        let yearly_reports;
+        let chartOne;
+
+        function showMonthlyData() {
+            monthlyBtn.classList.toggle('bg-white')
+            yearlyBtn.classList.toggle('bg-white')
+
+            chartOne.destroy()
+
+            renderChartOne(monthly_reports.map(el => el.total), monthly_reports.map(el => el.month))
+        }
+
+        function showYearlyData() {
+            monthlyBtn.classList.toggle('bg-white')
+            yearlyBtn.classList.toggle('bg-white')
+
+            chartOne.destroy()
+
+            renderChartOne(yearly_reports.map(el => el.total), yearly_reports.map(el => el.year))
+        }
+
+        function renderChartOne(data, label) {
+            const chartOneOptions = {
+                series: [{
+                    name: "Jumlah Laporan",
+                    data,
+                }],
+                legend: {
                     show: false,
+                    position: "top",
+                    horizontalAlign: "left",
                 },
-            },
-            responsive: [{
-                    breakpoint: 1024,
-                    options: {
-                        chart: {
-                            height: 300,
-                        },
+                colors: ["#3C50E0", "#80CAEE"],
+                chart: {
+                    fontFamily: "Satoshi, sans-serif",
+                    height: 335,
+                    type: "area",
+                    dropShadow: {
+                        enabled: true,
+                        color: "#623CEA14",
+                        top: 10,
+                        blur: 4,
+                        left: 0,
+                        opacity: 0.1,
                     },
-                },
-                {
-                    breakpoint: 1366,
-                    options: {
-                        chart: {
-                            height: 350,
-                        },
-                    },
-                },
-            ],
-            stroke: {
-                width: [2, 2],
-                curve: "straight",
-            },
 
-            markers: {
-                size: 0,
-            },
-            labels: {
-                show: false,
-                position: "top",
-            },
-            grid: {
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                responsive: [{
+                        breakpoint: 1024,
+                        options: {
+                            chart: {
+                                height: 300,
+                            },
+                        },
+                    },
+                    {
+                        breakpoint: 1366,
+                        options: {
+                            chart: {
+                                height: 350,
+                            },
+                        },
+                    },
+                ],
+                stroke: {
+                    width: [2, 2],
+                    curve: "straight",
+                },
+
+                markers: {
+                    size: 0,
+                },
+                labels: {
+                    show: false,
+                    position: "top",
+                },
+                grid: {
+                    xaxis: {
+                        lines: {
+                            show: true,
+                        },
+                    },
+                    yaxis: {
+                        lines: {
+                            show: true,
+                        },
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                markers: {
+                    size: 4,
+                    colors: "#fff",
+                    strokeColors: ["#3056D3", "#80CAEE"],
+                    strokeWidth: 3,
+                    strokeOpacity: 0.9,
+                    strokeDashArray: 0,
+                    fillOpacity: 1,
+                    discrete: [],
+                    hover: {
+                        size: undefined,
+                        sizeOffset: 5,
+                    },
+                },
                 xaxis: {
-                    lines: {
-                        show: true,
+                    type: "category",
+                    categories: label,
+                    axisBorder: {
+                        show: false,
+                    },
+                    axisTicks: {
+                        show: false,
                     },
                 },
                 yaxis: {
-                    lines: {
-                        show: true,
+                    title: {
+                        style: {
+                            fontSize: "0px",
+                        },
+                    },
+                    min: 0,
+                },
+            };
+
+            chartOne = new ApexCharts(
+                document.querySelector("#chartOne"),
+                chartOneOptions
+            );
+
+            chartOne.render()
+        }
+
+        function renderChartTwo(data, label) {
+            const chartTwoOptions = {
+                series: [{
+                    name: "Total",
+                    data,
+                }, ],
+                colors: ["#3056D3", "#80CAEE"],
+                chart: {
+                    type: "bar",
+                    height: 335,
+                    stacked: true,
+                    toolbar: {
+                        show: false,
+                    },
+                    zoom: {
+                        enabled: false,
                     },
                 },
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            markers: {
-                size: 4,
-                colors: "#fff",
-                strokeColors: ["#3056D3", "#80CAEE"],
-                strokeWidth: 3,
-                strokeOpacity: 0.9,
-                strokeDashArray: 0,
-                fillOpacity: 1,
-                discrete: [],
-                hover: {
-                    size: undefined,
-                    sizeOffset: 5,
-                },
-            },
-            xaxis: {
-                type: "category",
-                categories: [
-                    "Sep",
-                    "Oct",
-                    "Nov",
-                    "Dec",
-                    "Jan",
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                ],
-                axisBorder: {
-                    show: false,
-                },
-                axisTicks: {
-                    show: false,
-                },
-            },
-            yaxis: {
-                title: {
-                    style: {
-                        fontSize: "0px",
+
+                responsive: [{
+                    breakpoint: 1536,
+                    options: {
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 0,
+                                columnWidth: "25%",
+                            },
+                        },
+                    },
+                }, ],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        borderRadius: 0,
+                        columnWidth: "25%",
+                        borderRadiusApplication: "end",
+                        borderRadiusWhenStacked: "last",
                     },
                 },
-                min: 0,
-                max: 100,
-            },
+                dataLabels: {
+                    enabled: false,
+                },
+
+                xaxis: {
+                    categories: label,
+                },
+                legend: {
+                    position: "top",
+                    horizontalAlign: "left",
+                    fontFamily: "Satoshi",
+                    fontWeight: 500,
+                    fontSize: "14px",
+
+                    markers: {
+                        radius: 99,
+                    },
+                },
+                fill: {
+                    opacity: 1,
+                },
+            };
+
+
+            const chartTwo = new ApexCharts(
+                document.querySelector("#chartTwo"),
+                chartTwoOptions
+            );
+
+            chartTwo.render()
+        }
+
+        function transformCategory(category) {
+            return category
+                .split('_') // Split by underscores
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter of each word
+                .join(' '); // Join back with spaces
         };
 
-        const chartOne = new ApexCharts(
-            document.querySelector("#chartOne"),
-            chartOneOptions
-        );
+        async function getData() {
+            const baseURL = 'http://localhost:8000/api'; // Replace with your actual API base URL
 
-        chartOne.render();
+            const urls = [
+                `${baseURL}/get_total_reports`,
+                `${baseURL}/get_total_not_verified_reports`,
+                `${baseURL}/get_total_verified_reports`,
+                `${baseURL}/get_total_finished_reports`,
+                `${baseURL}/get_total_cancelled_reports`,
+                `${baseURL}/get_all_reports`,
+                `${baseURL}/get_total_per_category`,
+                `${baseURL}/get_top_province`,
+                `${baseURL}/get_monthly_reports`,
+                `${baseURL}/get_yearly_reports`
+            ];
 
-        const chartThreeOptions = {
-            series: [65, 34, 45, 12],
-            chart: {
-                type: "donut",
-                width: 380,
-            },
-            colors: ["#3C50E0", "#6577F3", "#8FD0EF", "#0FADCF"],
-            labels: ["Desktop", "Tablet", "Mobile", "Unknown"],
-            legend: {
-                show: false,
-                position: "bottom",
-            },
 
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: "65%",
-                        background: "transparent",
-                    },
-                },
-            },
+            const fetchPromises = urls.map(url => fetch(url));
 
-            dataLabels: {
-                enabled: false,
-            },
-            responsive: [{
-                breakpoint: 640,
-                options: {
-                    chart: {
-                        width: 200,
-                    },
-                },
-            }, ],
-        };
+            const responses = await Promise.all(fetchPromises);
 
-        const chartThree = new ApexCharts(
-            document.querySelector("#chartThree"),
-            chartThreeOptions
-        );
+            const dataPromises = responses.map(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            });
 
-        chartThree.render();
+            const data = await Promise.all(dataPromises);
+
+            console.log('Data from all requests:', data);
+
+            document.querySelector('#total').innerText = data[0].total
+            document.querySelector('#total_not_verified').innerText = data[1].total_not_verified
+            document.querySelector('#total_verified').innerText = data[2].total_verified
+            document.querySelector('#total_finished').innerText = data[3].total_finished
+            document.querySelector('#total_cancelled').innerText = data[4].total_cancelled
+
+            const all_reports = data[5]
+            const total_per_category = data[6].total_per_category
+            const top_province = data[7]
+            monthly_reports = data[8]
+            yearly_reports = data[9]
+
+            const month = monthly_reports.map(el => el.month)
+
+            renderChartOne(monthly_reports.map(el => el.total), monthly_reports.map(el => el.month))
+            renderChartTwo(Object.values(total_per_category), Object.keys(total_per_category).map(category =>
+                transformCategory(category)))
+
+            const topProvinceEl = document.querySelector('#top_province')
+
+            topProvinceEl.innerHTML = ''
+
+            top_province.forEach(el => {
+                topProvinceEl.innerHTML += `
+                        <tr class="border-b border-gray-100">
+                            <td class="border-b-2 border-gray-100 p-3">${el.province}</td>
+                            <td class="border-b-2 border-gray-100 p-3">${el.total}</td>
+                        </tr>
+                `
+            })
+        }
+
+        getData()
     </script>
 @endsection

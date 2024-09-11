@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\ReportsSeeder;
 use Database\Seeders\Auth\RolesSeeder;
 use Database\Seeders\Auth\UsersRolesSeeder;
 use Database\Seeders\Auth\UsersSeeder;
@@ -16,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UsersSeeder::class);
-         $this->call(RolesSeeder::class);
-         $this->call(UsersRolesSeeder::class);
-         $this->call(ReportsSeeder::class);
+        $this->call(UsersSeeder::class);
+        $this->call(RolesSeeder::class);
+        $this->call(UsersRolesSeeder::class);
+        $this->call(ReportsSeeder::class);
     }
 }

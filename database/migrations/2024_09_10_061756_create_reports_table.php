@@ -33,6 +33,7 @@ class CreateReportsTable extends Migration
                 'topik_lainnya'
             ]);
             $table->text('content');
+            $table->text('address');
             $table->string('media')->nullable();
             $table->enum('status', ['belum_diverifikasi', 'sudah_diverifikasi', 'sudah_selesai', 'ditolak']);
             $table->timestamps();
