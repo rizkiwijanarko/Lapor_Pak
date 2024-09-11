@@ -28,27 +28,23 @@
             <ul class="d-flex list-unstyled gap-3 mb-0">
                 <!-- Home Button -->
                 <li>
-                    <a href="#" class="btn btn-danger px-4" style="background-color: #FF323E; border-radius: 15px;">HOME</a>
+                    <a href="{{ url('/landing-page') }}" class="btn btn-danger px-4" style="background-color: #FF323E; border-radius: 15px;">HOME</a>
                 </li>
                 <li>
-                    <a href="#" class="btn btn-link text-decoration-none" style="font-size: 15px; font-weight: bold; color: #395bd7;">TENTANG LaporPak</a>
-                </li>
+    <a href="{{ url('/about-us') }}" class="btn btn-link text-decoration-none" style="font-size: 15px; font-weight: bold; color: #395bd7;">TENTANG LaporPak</a>
+</li>
+
             </ul>
         </nav>
     </div>
-</header>
-<!-- Hero Section -->
-<section class="hero-section container-fluid d-flex align-items-center justify-content-center py-5" style="min-height: 100vh;">
+</header><!-- Hero Section -->
+<section class="hero-section container-fluid d-flex align-items-center justify-content-center py-5" style="min-height: 100vh; margin-top: -50px;">
   <div class="row align-items-center justify-content-center text-center">
     <!-- Left: Text in Blue Box -->
     <div class="col-md-6 mb-3 mb-md-0">
-      <div class="hero-content p-4" style="background-color: #395bd7; border-radius: 40px; color: white; max-width: 600px; margin-top: -260px; position: relative;">
+      <div class="hero-content p-4" style="background-color: #395bd7; border-radius: 40px; color: white; max-width: 600px; margin-top: -290px; position: relative;">
         <h1 class="display-4 fw-bold mb-3" style="line-height: 1.2;">Lingkungan Kita<br>Tanggung Jawab Bersama</h1>
         <p class="lead">Lapor sekarang, bertindaklah demi masa depan yang lebih baik!</p>
-        <div style="position: absolute; bottom: -40px; left: 20px;">
-          <a href="#form-section" class="btn btn-danger" style="background-color: #FF323E; border-radius: 15px;">Lapor Sekarang</a>
-        </div>
-        <!-- Lapor Sekarang Button Positioned at Bottom Left of Text -->
         <div style="position: absolute; bottom: -40px; left: 20px;">
           <a href="#form-section" class="btn btn-danger" style="background-color: #FF323E; border-radius: 15px;">Lapor Sekarang</a>
         </div>
@@ -57,12 +53,13 @@
 
     <!-- Right: Hero Image -->
     <div class="col-md-6 text-center">
-      <div class="hero-image" style="margin-top: 150px;">
-      <img src="{{ asset('images/humanhuman.png') }}" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
+      <div class="hero-image" style="margin-top: 100px;">
+        <img src="{{ asset('images/humanhuman.png') }}" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
       </div>
     </div>
   </div>
 </section>
+
 
 
 <!-- Middle Section with min-height and More Padding -->

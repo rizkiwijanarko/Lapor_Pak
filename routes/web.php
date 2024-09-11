@@ -105,3 +105,15 @@ Route::get('/send-mail', function () {
 
     return 'Email sent successfully using Resend SMTP!';
 });
+
+// routes/web.php
+
+// Rute untuk halaman landing page
+Route::get('/landing-page', function () {
+    return view('landing-page');
+});
+
+// Rute untuk halaman about us
+Route::get('/about-us', function () {
+    return view('about-us');
+});
