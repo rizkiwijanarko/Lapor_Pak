@@ -397,4 +397,17 @@ class ReportController extends Controller
             ], 404);
         }
     }
+
+    public function sendMail(Request $request)
+    {
+        $recipient = $request->input('email', 'rizkiwijanarko@students.unnes.ac.id');
+        $code = $request->input('code', '123456');
+
+        Mail::raw("Kode anda adalah {$code}. Gunakan kode ini untuk melacak laporan anda", function ($message) use ($recipient) {
+            $message->to($recipient)
+                ->subject('Test Email');
+        });
+
+        return response()->json(['message' => 'Email sent successfully using Resend SMTP!']);
+    }
 }

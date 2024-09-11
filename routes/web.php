@@ -120,3 +120,6 @@ Route::get('/landing-page', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 });
+
+Route::get('/send-mail', 'ReportController@sendMail');
+
