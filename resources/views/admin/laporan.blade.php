@@ -7,6 +7,12 @@
         <h1 class="text-gray-700 text-3xl font-semibold">Laporan</h1>
         <p class="mt-4 text-gray-500">Berikut adalah data-data laporan yang sudah diterima</p>
 
+        <button id="summary-btn" onclick="getSummary()"
+            class="py-2 px-4 mt-10 rounded text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-700 transition-all font-medium">Simpulkan
+            dengan AI</button>
+
+        <div class="border rounded-lg shadow py-4 px-6 text-sm mt-5 hidden" id="summary"></div>
+
         <div id="wrapper" class="mt-10"></div>
 
         {{-- <button onclick="getLocation()">Get My Location</button>
@@ -17,6 +23,23 @@
 
 @section('scripts')
     <script>
+        async function getSummary() {
+            const buttonEl = document.querySelector('#summary-btn')
+            const summaryEl = document.querySelector('#summary')
+
+            buttonEl.innerText = 'Sedang Menyimpulkan ...'
+            buttonEl.disabled = true
+
+            const res = await fetch('http://localhost:8000/api/get_ai_summary')
+            const data = await res.json()
+
+            buttonEl.innerText = 'Simpulkan dengan AI'
+            buttonEl.disabled = false
+
+            summaryEl.classList.toggle('hidden')
+            summaryEl.innerText = data.summary
+        }
+
         function toggleStatus(id) {
             console.log('tes')
             const statusDropdownEl = document.querySelector(`#data-${id}`)

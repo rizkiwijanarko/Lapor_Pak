@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApikeyController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,15 @@ Route::get('/get_monthly_reports',  [ReportController::class, 'get_monthly_repor
 Route::get('/get_yearly_reports',  [ReportController::class, 'get_yearly_reports']);
 Route::get('/v1/get_data',  [ReportController::class, 'get_data']);
 
+Route::get('/email',  [ReportController::class, 'send_email']);
+
+
 Route::post('/lacak_laporan',  [ReportController::class, 'lacak_laporan']);
 
 
 Route::get('/get_ai_summary',  [ReportController::class, 'get_ai_summary']);
 
 Route::post('/insert_report',  [ReportController::class, 'insert_report']);
+Route::post('/make_key',  [ApikeyController::class, 'make_key']);
+
 Route::put('/update_status',  [ReportController::class, 'update_status']);

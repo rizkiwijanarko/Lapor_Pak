@@ -78,7 +78,9 @@
                         makin kece!</p>
 
                     <div class="mt-10 sm:flex sm:items-center sm:space-x-8">
-
+                        <button onclick="toggleModal()"
+                            class="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-orange-500 hover:bg-orange-600 focus:bg-orange-600"
+                            role="button">Dapatkan API key</button>
 
                         <a href="#contoh_request" title=""
                             class="inline-flex gap-3 items-center mt-6 text-base font-semibold transition-all duration-200 sm:mt-0 hover:opacity-80">
@@ -152,6 +154,7 @@ async function getData() {
 
     // Create a new URL object
     const url = new URL(baseUrl);
+    url.searchParams.append('apikey', 'your_api_key');
 
     // Add optional query parameters
     url.searchParams.append('category', 'something');
@@ -300,12 +303,14 @@ async function getData() {
                                         placeholder="name@company.com" required />
                                 </div>
 
-                                <div class="mt-1 text-green-500 text-sm">Api key sudah kami kirim ke email kamu</div>
-                                {{-- <div class="mt-1 text-red-600 text-sm">Email ini sudah pernah mendapatkan key</div> --}}
+                                <div id="email-message">
+
+                                </div>
 
 
 
-                                <button type="submit"
+
+                                <button id="submit-button" type="button" onclick="makeKey()"
                                     class="w-full text-white bg-[#F97316] hover:bg-[#D06114] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Dapatkan
                                     Key</button>
 
@@ -406,6 +411,36 @@ async function getData() {
             const modal = document.querySelector('#authentication-modal')
             document.body.classList.toggle('overflow-hidden')
             modal.classList.toggle('hidden')
+        }
+
+        async function makeKey() {
+            const email = document.querySelector('#email').value
+            const buttonEl = document.querySelector('#submit-button')
+
+            buttonEl.disabled = true
+            buttonEl.innerText = 'Tunggu ...'
+            const res = await fetch('http://localhost:8000/api/make_key', {
+                method: 'post',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify({
+                    email
+                })
+            })
+
+            const data = await res.json()
+
+            if (data.success) {
+                document.querySelector('#email-message').innerHTML =
+                    `<div class="mt-1 text-green-500 text-sm">Api key sudah kami kirim ke email kamu, tunggu sebentar</div>`
+            } else {
+                document.querySelector('#email-message').innerHTML =
+                    `<div class="mt-1 text-red-600 text-sm">Email ini sudah pernah mendapatkan key, cek lagi emailmu</div>`
+            }
+
+            buttonEl.disabled = false
+            buttonEl.innerText = 'Dapatkan Key'
         }
     </script>
 

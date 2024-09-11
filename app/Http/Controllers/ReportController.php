@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apikey;
 use App\Models\Report;
 use Carbon\Carbon;
 use DateTime;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Mail;
 
 class ReportController extends Controller
 {
@@ -110,6 +112,13 @@ class ReportController extends Controller
         $startDate = $request->query('start_date');
         $endDate = $request->query('end_date');
         $province = $request->query('province');
+        $apiKey = $request->query('apikey'); // Retrieve the API key from query parameters
+
+        // Check if API key exists in the 'apikeys' table
+        $validApiKey = Apikey::where('key', $apiKey)->first();
+        if (!$validApiKey) {
+            return response()->json(['error' => 'Invalid API key'], 401); // Return error if API key is invalid
+        }
 
         // Convert date format from dd_mm_yyyy to yyyy-mm-dd
         $startDateFormatted = $this->convertDateFormat($startDate);
@@ -129,7 +138,6 @@ class ReportController extends Controller
         }
 
         // Filter by province (assuming you have a province field in your reports table)
-        // If you don't have a province field, you can skip this part
         if ($province) {
             $query->where('address', 'like', '%' . $province . '%');
         }
@@ -144,6 +152,8 @@ class ReportController extends Controller
     public function insert_report(Request $request)
     {
         try {
+
+
             $imagePath = null;
 
             if ($request->hasFile('media')) {
@@ -157,6 +167,13 @@ class ReportController extends Controller
 
             $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             $code = substr(str_shuffle($characters), 0, 6);
+
+            $recipient = $request->input('email');
+
+            Mail::raw("Kode anda adalah {$code}. Gunakan kode ini untuk melacak laporan anda", function ($message) use ($recipient) {
+                $message->to($recipient)
+                    ->subject('Kode Lapor');
+            });
 
             $fullAddress = $request->input('detail_address') . ', ' . $request->input('address');
             Log::info('address', ['address' => $fullAddress]);
@@ -350,7 +367,15 @@ class ReportController extends Controller
 
     public function get_ai_summary(Request $request)
     {
-        $question = $request->input('question', 'apa itu javascript');
+        $reports = Report::all('content'); // Select only the 'content' field from all reports
+        $combinedContent = $reports->implode('content', ' '); // Combine all content into a single string
+
+        // If no reports are available, set a default question
+        if (empty($combinedContent)) {
+            $combinedContent = 'No reports available.';
+        }
+
+        $question = $request->input('question', $combinedContent . ". make summary from theese reports in indonesian");
 
         $client = new Client();
         $response = $client->post('https://api.openai.com/v1/chat/completions', [
@@ -364,7 +389,6 @@ class ReportController extends Controller
                     ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                     ['role' => 'user', 'content' => $question],
                 ],
-                'max_tokens' => 150,
             ],
         ]);
 
@@ -401,13 +425,26 @@ class ReportController extends Controller
         }
     }
 
-    public function test_email()
+    public function sendMail(Request $request)
     {
-        Resend::emails()->send([
-            'from' => 'Acme <onboarding@resend.dev>',
-            'to' => 'rasikhonly@gmail.com',
-            'subject' => 'hello world',
-            'html' => 'lalala',
-        ]);
+        $recipient = $request->input('email', 'rasikhonly@gmail.com');
+        $code = $request->input('code', '123456');
+
+        Mail::raw("Kode anda adalah {$code}. Gunakan kode ini untuk melacak laporan anda", function ($message) use ($recipient) {
+            $message->to($recipient)
+                ->subject('Test Email');
+        });
+
+        return response()->json(['message' => 'Email sent successfully using Resend SMTP!']);
     }
+
+    // public function test_email()
+    // {
+    //     Resend::emails()->send([
+    //         'from' => 'Acme <onboarding@resend.dev>',
+    //         'to' => 'rasikhonly@gmail.com',
+    //         'subject' => 'hello world',
+    //         'html' => 'lalala',
+    //     ]);
+    // }
 }

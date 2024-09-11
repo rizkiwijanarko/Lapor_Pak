@@ -109,15 +109,14 @@
 
                     <form onsubmit="submitReportForm(event)" id="report-form" method="POST"
                         enctype="multipart/form-data">
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control custom-input" id="email" name="email"
                                 placeholder="Ketik Email untuk mengirim kode status pengaduan" required>
-                        </div> --}}
+                        </div>
                         <div class="mb-3">
                             <label for="kategori" class="form-label">Kategori Aduan</label>
                             <select class="form-select custom-input" id="kategori" name="category_event" required>
-                                <option value="" disabled selected>Pilih kategori aduan</option>
                                 <option value="" disabled selected>Pilih kategori aduan</option>
                                 <option value="kesehatan">Kesehatan</option>
                                 <option value="ketertiban_umum">Ketertiban Umum</option>
@@ -336,6 +335,8 @@
         }
         async function submitReportForm(event) {
             event.preventDefault(); // Prevent the default form submission
+            alert('Tunggu kode lapor terkirim ke email anda, gunakan untuk mengecek progres laporan')
+
 
             const form = event.target; // Get the form element
 
@@ -352,6 +353,8 @@
             //     }
             // }
             // Send the data via fetch to the / api / insert_report endpoint
+            form.reset();
+
             const res = await fetch('http://localhost:8000/api/insert_report', {
                 method: 'POST',
                 body: formData,
@@ -359,12 +362,10 @@
 
             const data = await res.json()
 
-            console.log('data', data)
-
-            alert(data.code + ' adalah kode laporan anda, silakan gunakan untuk mengecek progres laporan')
+            // console.log('data', data)
 
 
-            // form.reset();
+
 
         }
 
