@@ -1,0 +1,417 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Mengatur header */
+header {
+  background-color: white;
+}
+
+.brand-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #395bd7;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-home {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 12px;
+  background-color: #ff323e;
+  color: white;
+  border-radius: 27px;
+  width: 75px;
+  height: 27px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-tentang {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #395bd7;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #395bd7;
+  text-decoration: none;
+}
+
+nav a.active {
+  font-weight: 800;
+  color: #ff323e;
+}
+
+/* Hero Section */.hero-content {
+  background-color: #395bd7;
+  border-radius: 40px; /* Rounded corners */
+  padding: 30px; /* Add some padding inside the box */
+  color: white; /* Text color */
+  max-width: 600px; /* Box width */
+}
+
+.hero-content h1 {
+  font-weight: bold;
+  font-size: 2.5rem; /* Adjusting the size */
+  line-height: 1.2; /* Reducing the line height for compact look */
+}
+
+.hero-content p {
+  font-size: 1.1rem; /* Slightly smaller for the paragraph */
+}
+
+.hero-content .btn {
+  margin-top: 20px;
+}
+
+
+/* Middle Section */
+/* Middle Section */
+.middle-section {
+  background-color: #395bd7 !important; /* Force background color */
+  padding: 60px 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2; /* Ensure middle-section is above other elements */
+  margin-top: -100px; /* Adjust spacing above if needed */
+}
+
+
+
+.middle-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0;
+}
+
+/* Form Section dengan lengkungan */ /* Form Section */
+/* Form Section */
+.form-section {
+  background-color: white;
+  padding: 50px 0;
+  position: relative;
+  z-index: 3; /* Ensure form section appears above */
+  margin-top: -90px;
+  width: 100vw;
+  border-radius: 150px 150px 0 0; /* Ensure rounded top corners */
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* Form Container untuk tata letak form dan gambar */
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  width: 100vw; /* Buat form-container memenuhi lebar layar */
+  margin: 0; /* Pastikan margin dihapus */
+  align-items: flex-start; /* Atur agar gambar sejajar dengan bagian atas form */
+}
+/* Styling the red box */
+.custom-box {
+  background-color: #FF323E; /* Red background */
+  color: white; /* White text */
+  padding: 15px 30px; /* Padding around the text */
+  border-radius: 15px; /* Rounded corners for pill shape */
+  font-size: 16px; /* Text size */
+  font-weight: bold; /* Bold text */
+  text-align: center; /* Center text inside the box */
+  margin: 20px auto; /* Center the box horizontally */
+  display: inline-block;
+}
+
+
+.col-md-8 {
+  flex: 0 0 55%; /* Mengatur lebar form menjadi 55% dari lebar layar */
+  padding-left: 20px;
+}
+
+.col-md-4 {
+  flex: 0 0 45%; /* Mengatur lebar gambar menjadi 45% dari lebar layar */
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end; /* Mendorong gambar ke kanan */
+}
+
+.custom-input {
+  background-color: rgba(57, 91, 215, 0.1);
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  width: 100%; /* Pastikan input field memenuhi lebar kolom */
+}
+
+/* Submit button style (rounded, similar to the second image) */
+.btn-submit {
+  background-color: #ff323e; /* Red background */
+  color: white; /* White text */
+  font-size: 1.2rem;
+  padding: 12px 40px; /* Larger padding to make it more prominent */
+  border-radius: 50px; /* Rounded corners */
+  border: none;
+  display: inline-block;
+  margin-top: 20px; /* Add some space above the button */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  text-align: center;
+  width: auto;
+}
+
+/* Center the submit button inside its parent container */
+.text-center {
+  text-align: center;
+}
+
+/* Bagian gambar robot */
+.illustration-wrapper {
+  display: flex;
+  justify-content: flex-end; /* Mendorong gambar ke kanan */
+  align-items: flex-start;
+  width: 100%; /* Membuat gambar menempati seluruh lebar yang disediakan */
+}
+.robot-img {
+  width: 150px; /* Adjust this value for the desired width */
+  height: auto; /* Keep the aspect ratio intact */
+}
+
+/* Optional: Center the robot vertically */
+.illustration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .form-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-section {
+    margin-top: -100px;
+  }
+
+  .robot-img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.illustration-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Styling untuk elemen lainnya tetap sama */
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-btn input {
+  display: none;
+}
+
+.camera-icon {
+  width: 50px;
+  height: auto;
+}
+
+/* Map container */
+.map-container {
+  height: 200px;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/*tracking*/
+/* Tracking Section with curved bottom */
+.tracking-section {
+  background-color: #395bd7; /* Blue background */
+  color: white; /* White text */
+  padding: 60px 0;
+  text-align: center;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Status Image */
+.status-img {
+  width: 150px; /* Adjust the size of the status image */
+  height: auto;
+}
+
+/* Status Text */
+.status-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Tracking Input and Button */
+.tracking-input input {
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  outline: none;
+  width: 250px;
+}
+
+.tracking-input button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #ff5350;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Progress Bar Styling */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.line {
+  flex-grow: 1;
+  height: 3px;
+  background-color: #e0e0e0;
+  position: relative;
+}
+
+.bg-danger {
+  background-color: #FF323E;
+}
+
+.bg-secondary {
+  background-color: #E0E0E0;
+}
+
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .tracking-input {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .progress {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line {
+    width: 80px;
+  }
+  /* Styling for status labels and icons */
+/* Styling for status labels and smaller icons */
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between icon and text */
+}
+
+.status-icon {
+  width: 16px; /* Set explicit width */
+  height: 16px; /* Set explicit height to ensure resizing */
+  max-width: 100%; /* Prevent image from exceeding its container */
+  max-height: 100%; /* Prevent image from exceeding its container */
+  object-fit: contain; /* Ensure the image scales properly without distortion */
+}
+
+
+  .status-labels {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.carousel-section {
+  padding: 50px 0;
+}
+
+.carousel-item img {
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-caption h5 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Footer Styling */
+/* Footer Styling */  .social-links i {
+      font-size: 36px; /* Increase icon size */
+      margin-right: 15px; /* Spacing between icons */
+    }
+
+    footer {
+      background-color: #395bd7;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    footer h5 {
+      font-weight: bold;
+    }
+
+    footer a {
+      font-size: 16px;
+    }
