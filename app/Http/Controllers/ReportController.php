@@ -400,4 +400,14 @@ class ReportController extends Controller
             ], 404);
         }
     }
+
+    public function test_email()
+    {
+        Resend::emails()->send([
+            'from' => 'Acme <onboarding@resend.dev>',
+            'to' => 'rasikhonly@gmail.com',
+            'subject' => 'hello world',
+            'html' => 'lalala',
+        ]);
+    }
 }
