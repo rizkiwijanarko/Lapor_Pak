@@ -32,3 +32,4 @@ Route::get('/get_yearly_reports',  [ReportController::class, 'get_yearly_reports
 Route::get('/get_ai_summary',  [ReportController::class, 'get_ai_summary']);
 
 Route::post('/insert_report',  [ReportController::class, 'insert_report']);
+Route::put('/update_status',  [ReportController::class, 'update_status']);

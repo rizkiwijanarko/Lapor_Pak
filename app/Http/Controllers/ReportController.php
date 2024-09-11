@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -246,10 +247,23 @@ class ReportController extends Controller
         return response()->json($topProvinces);
     }
 
-    public function detail_report(Report $report, $id): View
+    public function detail_report(Report $report, $id)
     {
         $report = Report::find($id);
-        return view('admin.reports.detail', compact('report'));
+        Log::info('status', ['status', $report->created_at]);
+
+        $date = new DateTime($report->created_at);
+        $formattedDate = $date->format('j M Y');
+
+        $report->created_at = $formattedDate;
+
+        $report->category_event = ucwords(str_replace('_', ' ', $report->category_event));
+        $report->status = ucwords(str_replace('_', ' ', $report->status));
+
+        Log::info('status', ['status', $report->created_at]);
+        Log::info('formattedDate', ['formattedDate', $formattedDate]);
+
+        return view('admin.detail-laporan', compact('report', 'formattedDate'));
     }
 
     public function get_ai_summary()
@@ -262,5 +276,14 @@ class ReportController extends Controller
         $summary = 'hasil';
 
         return response()->json(['summary' => $summary]);
+    }
+
+    public function update_status(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $report = Report::find($id);
+        $report->status = $status;
+        $report->save();
     }
 }
