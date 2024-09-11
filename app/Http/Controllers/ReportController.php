@@ -147,7 +147,9 @@ class ReportController extends Controller
 
             if ($request->hasFile('media')) {
                 $image = $request->file('media');
-                $imagePath = $image->store('public/media'); // Save image to storage/app/public/media
+                $fileName = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('public/media', $fileName); // Save image to storage/app/public/media
+                $imagePath = 'storage/media/' . $fileName;
             }
 
             Log::info('request', ['request' => $request->all()]);
@@ -179,7 +181,8 @@ class ReportController extends Controller
 
     public function get_all_reports()
     {
-        $reports = Report::all();
+        $reports = Report::orderBy('created_at', 'desc')->get();
+
         return response()->json($reports->toArray());
     }
 

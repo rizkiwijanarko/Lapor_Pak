@@ -30,17 +30,17 @@
                 <ul class="d-flex list-unstyled gap-3 mb-0">
                     <!-- Home Button -->
                     <li>
-                        <a href="#" class="btn btn-danger px-4"
+                        <a href="{{ url('/age') }}" class="btn btn-danger px-4"
                             style="background-color: #FF323E; border-radius: 15px;">HOME</a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-link text-decoration-none"
+                        <a href="{{ url('/about-us') }}" class="btn btn-link text-decoration-none"
                             style="font-size: 15px; font-weight: bold; color: #395bd7;">TENTANG LaporPak</a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <nav>
+        {{-- <nav>
             <ul class="d-flex list-unstyled gap-3 mb-0">
                 <!-- Home Button -->
                 <li>
@@ -53,7 +53,7 @@
                 </li>
 
             </ul>
-        </nav>
+        </nav> --}}
         </div>
     </header><!-- Hero Section -->
     <section class="hero-section container-fluid d-flex align-items-center justify-content-center py-5"
@@ -107,97 +107,13 @@
                         </div>
                     </div>
 
-                    <form action="submit.php" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control custom-input" id="email" name="email"
-                                placeholder="Ketik Email untuk mengirim kode status pengaduan" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="kategori" class="form-label">Kategori Aduan</label>
-                            <select class="form-select custom-input" id="kategori" name="kategori" required>
-                                <option value="" disabled selected>Pilih kategori aduan</option>
-                                <option value="penipuan">Penipuan</option>
-                                <option value="kekerasan">Kekerasan pada Anak/Kekerasan</option>
-
-                                <option value="penipuan">Penipuan</option>
-                                <option value="kekerasan">Kekerasan pada Anak/Kekerasan</option>
-                                <option value="perjudian">Perjudian</option>
-                                <option value="saparatisme">Separatisme/Organisasi Berbahaya</option>
-                                <option value="penyalagunaan_obat">Penyalahgunaan Obat Terlarang</option>
-                                <option value="konten_melanggar">Konten Melanggar Nilai Sosial Budaya</option>
-                                <option value="hoax">Hoax</option>
-                                <option value="kinen_negatif">Kinen Negatif yang Direkomendasikan Instansi Sektor
-                                </option>
-                                <option value="terorisme">Terorisme</option>
-                                <option value="pelanggaran_hak_kekayaan">Pelanggaran Hak atas Kekayaan Intelektual
-                                </option>
-                                <option value="pemerasan">Pemerasan</option>
-                                <option value="pelanggaran_keamanan">Pelanggaran Keamanan Informasi</option>
-                                <option value="konten_meresahkan">Konten Meresahkan Masyarakat</option>
-                                <option value="perdagangan_produk">Perdagangan Produk dengan Tujuan Khusus</option>
-                                <option value="" disabled selected>Pilih kategori aduan</option>
-
-                            </select>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="detail" class="form-label">Detail Aduan</label>
-                            <textarea class="form-control custom-input" id="detail" name="detail" rows="5"
-                                placeholder="Ketik detail aduan anda" required></textarea>
-                        </div>
-
-                        <!-- Location and Map Side by Side -->
-                        <div class="mb-3 row align-items-center">
-                            <div class="col-8">
-                                <label for="lokasi" class="form-label">Lokasi Kejadian</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control custom-input" id="lokasi"
-                                        name="lokasi" placeholder="Pilih lokasi kejadian" readonly required>
-                                    <button type="button" class="btn btn-secondary">Pilih Lokasi</button>
-                                </div>
-                            </div>
-
-                            <!-- Right: Hero Image -->
-                            <div class="col-md-6 text-center">
-                                <div class="hero-image" style="margin-top: 150px;">
-                                    <img src="{{ asset('images/humanhuman.png') }}" alt="Illustration Handshake"
-                                        class="img-fluid" style="max-width: 100%; height: auto;">
-                                </div>
-                            </div>
-                        </div>
-    </section>
-
-
-    <!-- Middle Section with min-height and More Padding -->
-    <section class="middle-section text-white text-center py-5"
-        style="background-color: #395bd7; z-index: 2; margin-top: -270px; padding-top: 100px; padding-bottom: 200px; min-height: 800px; position: relative;">
-        <div class="container">
-            <img src="{{ asset('images/icon.png') }}" alt="Tracking Icon" class="mb-3" style="height: 60px;">
-            <h2 class="mb-3">Laporkan, pantau, dan wujudkan perubahan</h2>
-        </div>
-    </section>
-
-    <!-- Form Section with Extra Margin -->
-    <section id="form-section" class="form-section container-fluid" style="margin-top: -550px; z-index: 3;">
-        <div class="container">
-            <div class="row">
-                <!-- Left Column: Form -->
-                <div class="col-md-8">
-                    <!-- Custom Box with Rounded Edges Centered on Page -->
-                    <div class="center-container">
-                        <div class="custom-box">
-                            Sampaikan Pengaduan Anda
-                        </div>
-                    </div>
-
                     <form onsubmit="submitReportForm(event)" id="report-form" method="POST"
                         enctype="multipart/form-data">
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control custom-input" id="email" name="email"
                                 placeholder="Ketik Email untuk mengirim kode status pengaduan" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="kategori" class="form-label">Kategori Aduan</label>
                             <select class="form-select custom-input" id="kategori" name="category_event" required>

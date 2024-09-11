@@ -67,7 +67,11 @@
                     sort: false
                 },
                 "Status",
-                "Tanggal",
+                {
+                    name: 'Tanggal',
+                    sort: true,
+                    formatter: cell => formatDate(cell)
+                },
                 "Alamat",
                 {
                     name: 'Aksi',
@@ -105,7 +109,7 @@
                     </div>
                 </div>
             `),
-                    formatDate(report.created_at),
+                    report.created_at,
                     report.address,
                     gridjs.html(`
                 <a href='{{ url('admin/laporan/${report.id}') }}' class='flex justify-center items-center size-8 bg-gray-100 rounded hover:bg-gray-200'>

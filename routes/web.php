@@ -100,7 +100,7 @@ Route::get('/api', function () {
 // Send Email
 Route::get('/send-mail', function () {
     Mail::raw('Kode anda adalah {}. Gunakan kode ini untuk melacak laporan anda', function ($message) {
-        $message->to('rizkiwijanarko@students.unnes.ac.id')
+        $message->to('rasikhonly@gmail.com')
             ->subject('Test Email');
     });
 
