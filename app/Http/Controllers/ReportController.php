@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Carbon\Carbon;
+use DateTime;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +13,20 @@ use GuzzleHttp\Client;
 
 class ReportController extends Controller
 {
+    private function convertDateFormat($date)
+    {
+        if (!$date) {
+            return null;
+        }
+
+        try {
+            $carbonDate = Carbon::createFromFormat('d_m_Y', $date);
+            return $carbonDate->format('Y-m-d');
+        } catch (\Exception $e) {
+            // Handle invalid date format
+            return null;
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -87,16 +103,79 @@ class ReportController extends Controller
         //
     }
 
+    public function get_data(Request $request)
+    {
+        // Retrieve query parameters
+        $category = $request->query('category');
+        $startDate = $request->query('start_date');
+        $endDate = $request->query('end_date');
+        $province = $request->query('province');
 
+        // Convert date format from dd_mm_yyyy to yyyy-mm-dd
+        $startDateFormatted = $this->convertDateFormat($startDate);
+        $endDateFormatted = $this->convertDateFormat($endDate);
+
+        // Build the query
+        $query = Report::query();
+
+        // Filter by category
+        if ($category) {
+            $query->where('category_event', $category);
+        }
+
+        // Filter by date range
+        if ($startDateFormatted && $endDateFormatted) {
+            $query->whereBetween('created_at', [$startDateFormatted, $endDateFormatted]);
+        }
+
+        // Filter by province (assuming you have a province field in your reports table)
+        // If you don't have a province field, you can skip this part
+        if ($province) {
+            $query->where('address', 'like', '%' . $province . '%');
+        }
+
+        // Get the results
+        $results = $query->get();
+
+        return response()->json($results);
+    }
 
 
     public function insert_report(Request $request)
     {
-        Log::info('requst', ['request' => $request->all()]);
+        try {
+            $imagePath = null;
 
-        Report::create($request->all());
+            if ($request->hasFile('media')) {
+                $image = $request->file('media');
+                $imagePath = $image->store('public/media'); // Save image to storage/app/public/media
+            }
 
-        return response()->json($request->all());
+            Log::info('request', ['request' => $request->all()]);
+
+            $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            $code = substr(str_shuffle($characters), 0, 6);
+
+            $fullAddress = $request->input('detail_address') . ', ' . $request->input('address');
+            Log::info('address', ['address' => $fullAddress]);
+
+            Report::create([
+                'category_event' => $request->input('category_event'),
+                'content' => $request->input('content'),
+                'address' => $fullAddress,
+                'status' => 'belum_diverifikasi',
+                'code' => $code,
+                'media' => $imagePath
+            ]);
+
+            return response()->json(['message' => 'Report inserted successfully', 'code' => $code]);
+        } catch (QueryException $e) {
+            Log::error('Database error', ['error' => $e->getMessage()]);
+            return response()->json(['message' => 'Database error occurred.'], 500);
+        } catch (\Exception $e) {
+            Log::error('General error', ['error' => $e->getMessage()]);
+            return response()->json(['message' => 'An error occurred.'], 500);
+        }
     }
 
     public function get_all_reports()
@@ -247,10 +326,23 @@ class ReportController extends Controller
         return response()->json($topProvinces);
     }
 
-    public function detail_report(Report $report, $id): View
+    public function detail_report(Report $report, $id)
     {
         $report = Report::find($id);
-        return view('admin.reports.detail', compact('report'));
+        Log::info('status', ['status', $report->created_at]);
+
+        $date = new DateTime($report->created_at);
+        $formattedDate = $date->format('j M Y');
+
+        $report->created_at = $formattedDate;
+
+        $report->category_event = ucwords(str_replace('_', ' ', $report->category_event));
+        $report->status = ucwords(str_replace('_', ' ', $report->status));
+
+        Log::info('status', ['status', $report->created_at]);
+        Log::info('formattedDate', ['formattedDate', $formattedDate]);
+
+        return view('admin.detail-laporan', compact('report', 'formattedDate'));
     }
 
     public function get_ai_summary()
@@ -273,4 +365,31 @@ class ReportController extends Controller
 
     return response()->json(['summary' => $summary]);
 }
+
+    public function update_status(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $report = Report::find($id);
+        $report->status = $status;
+        $report->save();
+    }
+
+    public function lacak_laporan(Request $request)
+    {
+        $code = $request->input('code');
+        $report = Report::where('code', $code)->first();
+
+        if ($report) {
+            return response()->json([
+                'success' => true,
+                'report' => $report
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Report not found'
+            ], 404);
+        }
+    }
 }

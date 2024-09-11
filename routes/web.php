@@ -15,6 +15,9 @@
 /**
  * Auth routes
  */
+
+use App\Http\Controllers\ReportController;
+
 Route::group(['namespace' => 'Auth'], function () {
 
     // Authentication Routes...
@@ -55,9 +58,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/laporan', function () {
         return view('admin.laporan');
     });
-    Route::get('/laporan/{id}', function () {
-        return view('admin.detail-laporan');
-    });
+    Route::get('/laporan/{id}', [ReportController::class, 'detail_report']);
     // Route::get('/kategori', function () {
     //     return view('admin.kategori');
     // });
@@ -100,10 +101,22 @@ Route::get('/api', function () {
 Route::get('/send-mail', function () {
     Mail::raw('Kode anda adalah {}. Gunakan kode ini untuk melacak laporan anda', function ($message) {
         $message->to('rizkiwijanarko@students.unnes.ac.id')
-                ->subject('Test Email');
+            ->subject('Test Email');
     });
 
     return 'Email sent successfully using Resend SMTP!';
 });
 
 Route::get('/ai-summary', 'ReportController@get_ai_summary');
+
+// routes/web.php
+
+// Rute untuk halaman landing page
+Route::get('/landing-page', function () {
+    return view('landing-page');
+});
+
+// Rute untuk halaman about us
+Route::get('/about-us', function () {
+    return view('about-us');
+});
