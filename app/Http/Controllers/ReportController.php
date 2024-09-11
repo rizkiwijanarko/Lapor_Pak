@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -84,82 +87,180 @@ class ReportController extends Controller
     }
 
 
-    
 
-    public function insert_report(array $data)
+
+    public function insert_report(Request $request)
     {
-        return Report::create($data);
+        Log::info('requst', ['request' => $request->all()]);
+
+        Report::create($request->all());
+
+        return response()->json($request->all());
     }
 
-
-    public function get_all_reports(): array
+    public function get_all_reports()
     {
         $reports = Report::all();
-
-        return $reports->toArray();
+        return response()->json($reports->toArray());
     }
 
-    public function get_total_reports(): int
+    public function get_total_reports()
     {
-        return Report::count();
+        $total = Report::count();
+        return response()->json(['total' => $total]);
     }
 
-    public function get_total_not_verified_reports(): int
+    public function get_total_not_verified_reports()
     {
-        return Report::where('status', 'belum_diverifikasi')->count();
+        $total = Report::where('status', 'belum_diverifikasi')->count();
+        return response()->json(['total_not_verified' => $total]);
     }
 
-    public function get_total_verified_reports(): int
+    public function get_total_verified_reports()
     {
-        return Report::where('status', 'sudah_diverifikasi')->count();
+        $total = Report::where('status', 'sudah_diverifikasi')->count();
+        return response()->json(['total_verified' => $total]);
     }
 
-    public function get_total_finished_reports(): int
+    public function get_total_finished_reports()
     {
-        return Report::where('status', 'sudah_selesai')->count();
-
+        $total = Report::where('status', 'sudah_selesai')->count();
+        return response()->json(['total_finished' => $total]);
     }
 
-    public function get_total_cancelled_reports(): int
+    public function get_total_cancelled_reports()
     {
-        return Report::where('status', 'ditolak')->count();
+        $total = Report::where('status', 'ditolak')->count();
+        return response()->json(['total_cancelled' => $total]);
     }
 
-    public function get_monthly_reports(): array
+    public function get_total_per_category()
     {
-        $reports = Report::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
-            ->whereYear('created_at', date('Y'))
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get();
+        $categories = [
+            'agama',
+            'kesehatan',
+            'ketertiban_umum',
+            'pekerjaan_umum_dan_penataan_ruang',
+            'pemberantasan_penyalahgunaan',
+            'peredaran_gelap_narkotika',
+            'prekursor_narkotika',
+            'kekerasan_di_satuan_pendidikan',
+            'politik_dan_hukum',
+            'peniadaan_mudik',
+            'perhubungan',
+            'perlindungan_konsumen',
+            'topik_lainnya'
+        ];
 
-        return $reports->map(function ($report) {
-            return [
-                'month' => $report->month,
-                'count' => $report->count,
+        $counts = [];
+
+        try {
+            foreach ($categories as $category) {
+                $counts[$category] = Report::where('category_event', $category)->count();
+            }
+
+            Log::info('Counts per category', ['counts' => $counts]);
+
+            return response()->json(['total_per_category' => $counts]);
+        } catch (\Exception $e) {
+            Log::error('Error retrieving counts per category', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'An error occurred while retrieving counts.'], 500);
+        }
+    }
+
+    public function get_monthly_reports()
+    {
+        $now = Carbon::now();
+
+        $monthlyReports = [];
+
+        for ($i = 0; $i < 12; $i++) {
+            $startOfMonth = $now->copy()->subMonths($i)->startOfMonth()->format('Y-m-d');
+            $endOfMonth = $now->copy()->subMonths($i)->endOfMonth()->format('Y-m-d');
+
+            $total = DB::table('reports')
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->count();
+
+            $monthlyReports[] = [
+                'month' => $now->copy()->subMonths($i)->format('M'),
+                'total' => $total
             ];
-        })->toArray();
+        }
+
+        $monthlyReports = array_reverse($monthlyReports);
+
+        return response()->json($monthlyReports);
     }
 
-    public function get_yearly_reports(): array
+    public function get_yearly_reports()
     {
-        $reports = Report::selectRaw('YEAR(created_at) as year, COUNT(*) as count')
-            ->groupBy('year')
-            ->orderBy('year')
-            ->get();
+        // Get the earliest report's creation date
+        $earliestReportDate = DB::table('reports')->min('created_at');
 
-        return $reports->map(function ($report) {
-            return [
-                'year' => $report->year,
-                'count' => $report->count,
+        if (!$earliestReportDate) {
+            return response()->json([]);
+        }
+
+        // Convert earliest report date to a Carbon instance
+        $startYear = Carbon::parse($earliestReportDate)->year;
+
+        // Get current year
+        $currentYear = Carbon::now()->year;
+
+        // Initialize an empty array for storing the results
+        $results = [];
+
+        // Loop through each year from the start year to the current year
+        for ($year = $startYear; $year <= $currentYear; $year++) {
+            $total = DB::table('reports')
+                ->whereYear('created_at', $year)
+                ->count();
+
+            $results[] = [
+                'year' => $year,
+                'total' => $total
             ];
-        })->toArray();
-        
+        }
+
+        return response()->json($results);
+    }
+
+    public function get_top_province()
+    {
+        // Extract the province from the address
+        $topProvinces = DB::table('reports')
+            ->select(DB::raw("SUBSTRING_INDEX(SUBSTRING_INDEX(address, ',', -2), ',', 1) as province"), DB::raw('COUNT(*) as total'))
+            ->groupBy('province')
+            ->orderBy('total', 'desc')
+            ->limit(5)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'province' => trim($item->province),
+                    'total' => $item->total
+                ];
+            });
+
+        // Return the result as a JSON response
+        return response()->json($topProvinces);
     }
 
     public function detail_report(Report $report, $id): View
     {
         $report = Report::find($id);
         return view('admin.reports.detail', compact('report'));
+    }
+
+    public function get_ai_summary()
+    {
+
+        $question = 'apa itu javascript';
+
+        // operasi ai nya
+
+        $summary = 'hasil';
+
+        return response()->json(['summary' => $summary]);
     }
 }
