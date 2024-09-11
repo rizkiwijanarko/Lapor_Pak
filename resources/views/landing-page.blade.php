@@ -58,7 +58,7 @@
     <!-- Right: Hero Image -->
     <div class="col-md-6 text-center">
       <div class="hero-image" style="margin-top: 150px;">
-        <img src="{{ asset('images/humanhuman.png') }}" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
+      <img src="{{ asset('images/humanhuman.png') }}" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
       </div>
     </div>
   </div>
@@ -69,8 +69,8 @@
 <section class="middle-section text-white text-center py-5" 
     style="background-color: #395bd7; z-index: 2; margin-top: -270px; padding-top: 100px; padding-bottom: 200px; min-height: 800px; position: relative;">
   <div class="container">
-    <img  src="{{ asset('images/icon.png') }}" alt="Tracking Icon" class="mb-3" style="height: 60px;">
-    <h2 class="mb-3">Laporkan, pantau, dan wujudkan perubahan</h2>
+  <img src="{{ asset('images/icon.png') }}" alt="Tracking Icon" class="mb-3" style="height: 60px;">
+  <h2 class="mb-3">Laporkan, pantau, dan wujudkan perubahan</h2>
   </div>
 </section>
 
@@ -155,7 +155,7 @@
           <div class="mb-3">
             <label class="btn btn-outline-primary">
               <input type="file" id="fileUpload" name="fileUpload" style="display: none;" onchange="handleFileUpload()">
-              <img src="{{ asset('images/camera.png') }}" alt="Camera Icon" class="camera-icon"> Lampiran
+              <img src="{{ asset('images/camera.png') }}" alt="Camera Icon" class="camera-icon"> Lampiran
             </label>
             <!-- Placeholder for checkmark -->
             <span id="upload-status" style="display: none; margin-left: 10px;">✅</span>
@@ -163,7 +163,8 @@
 
           <!-- Robot Illustration -->
           <div class="illustration-container">
-            <img src="{{ asset('images/robot.png') }}" alt="Robot Illustration" class="img-fluid">
+          <img src="{{ asset('images/robot.png') }}" alt="Robot Illustration" class="img-fluid">
+
           </div>
         </div>
       </div>
@@ -188,8 +189,8 @@
 
 <!-- Icon and Title Outside the Tracking Section -->
 <div class="container text-center my-5">
-  <img src="{{ asset('images/Tracking.png') }}" alt="Tracking Icon" class="status-img mb-4" style="width: 100px; height: auto;">
-  <!-- Change the text color to black -->
+<img src="{{ asset('images/Tracking.png') }}" alt="Tracking Icon" class="status-img mb-4" style="width: 100px; height: auto;">
+<!-- Change the text color to black -->
   <h2 class="status-text mb-4" style="color: black;">Lacak Status Pengaduan Anda</h2>
 </div>
 
@@ -223,16 +224,16 @@
       <!-- Adding more space between the status labels and the progress bar -->
       <div class="status-labels d-flex justify-content-between mt-5" style="gap: 50px; padding-top: 30px;">
         <span class="status-item d-flex align-items-center">
-          <img src="{{ asset('images/pengaduan_dikirim.png') }}" alt="Pengaduan dikirim" class="status-icon me-2" style="width: 30px; height: auto;">
-          <span class="text-white fs-5">Pengaduan dikirim</span>
+        <img src="{{ asset('images/pengaduan_dikirim.png') }}" alt="Pengaduan dikirim" class="status-icon me-2" style="width: 30px; height: auto;">
+        <span class="text-white fs-5">Pengaduan dikirim</span>
         </span>
         <span class="status-item d-flex align-items-center">
-          <img ssrc="{{ asset('images/telahdiverivikasi.png') }}" alt="Telah diverifikasi" class="status-icon me-2" style="width: 30px; height: auto;">
-          <span class="text-white fs-5">Telah diverifikasi</span>
+        <img src="{{ asset('images/telahdiverivikasi.png') }}" alt="Telah diverifikasi" class="status-icon me-2" style="width: 30px; height: auto;">
+ <span class="text-white fs-5">Telah diverifikasi</span>
         </span>
         <span class="status-item d-flex align-items-center">
-          <img src="{{ asset('images/telahdiselesaikan.png') }}"alt="Telah diselesaikan" class="status-icon me-2" style="width: 30px; height: auto;">
-          <span class="text-white fs-5">Telah diselesaikan</span>
+        <img src="{{ asset('images/telahdiselesaikan.png') }}" alt="Telah diselesaikan" class="status-icon me-2" style="width: 30px; height: auto;">
+        <span class="text-white fs-5">Telah diselesaikan</span>
         </span>
       </div>
     </div>
@@ -249,20 +250,20 @@
     <div id="pengaduanCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img ssrc="{{ asset('images/berita1.png') }}"class="d-block w-100" alt="Pengaduan 1">
-          <div class="carousel-caption d-none d-md-block">
+        <img src="{{ asset('images/berita1.png') }}" class="d-block w-100" alt="Pengaduan 1">
+        <div class="carousel-caption d-none d-md-block">
             <h5>4 ekor Satwa yang Dilindungi berhasil dievakuasi sebelum sempat dijual oknum</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{{ asset('images/berita2.png') }}"class="d-block w-100" alt="Pengaduan 2">
-          <div class="carousel-caption d-none d-md-block">
+        <img src="{{ asset('images/berita2.png') }}" class="d-block w-100" alt="Pengaduan 2">
+        <div class="carousel-caption d-none d-md-block">
             <h5>Pohon tumbang di jalan protokol berhasil dibersihkan dengan cepat oleh petugas</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{{ asset('images/berita3.png') }}"class="d-block w-100" alt="Pengaduan 3">
-          <div class="carousel-caption d-none d-md-block">
+        <img src="{{ asset('images/berita3.png') }}" class="d-block w-100" alt="Pengaduan 3">
+        <div class="carousel-caption d-none d-md-block">
             <h5>Kecelakaan lalu lintas yang melibatkan dua kendaraan berhasil ditangani</h5>
           </div>
         </div>
