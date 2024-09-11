@@ -11,7 +11,8 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css">
+ 
+  <link rel="stylesheet" href="resources/views/css/styles.css">
 
 </head>
 <body class="bg-white">
@@ -19,7 +20,7 @@
 <header class="container-fluid bg-white fixed-top">
     <div class="container d-flex justify-content-between align-items-center py-3">
         <div class="logo d-flex align-items-center">
-            <img src="images/logo.png" alt="LaporPak Logo" width="40" height="49">
+            <img src="resources/views//images/logo.png" alt="LaporPak Logo" width="40" height="49">
             <span class="ms-2 fw-bold fs-4" style="color: #395bd7;">LaporPak</span>
         </div>
         <nav>
@@ -56,7 +57,7 @@
     <!-- Right: Hero Image -->
     <div class="col-md-6 text-center">
       <div class="hero-image" style="margin-top: 150px;">
-        <img src="images/humanhuman.png" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
+        <img src="resources/views/images/humanhuman.png" alt="Illustration Handshake" class="img-fluid" style="max-width: 100%; height: auto;">
       </div>
     </div>
   </div>
@@ -67,7 +68,7 @@
 <section class="middle-section text-white text-center py-5" 
     style="background-color: #395bd7; z-index: 2; margin-top: -270px; padding-top: 100px; padding-bottom: 200px; min-height: 800px; position: relative;">
   <div class="container">
-    <img src="images/icon.png" alt="Tracking Icon" class="mb-3" style="height: 60px;">
+    <img src="resources/views/images/icon.png" alt="Tracking Icon" class="mb-3" style="height: 60px;">
     <h2 class="mb-3">Laporkan, pantau, dan wujudkan perubahan</h2>
   </div>
 </section>
@@ -153,7 +154,7 @@
           <div class="mb-3">
             <label class="btn btn-outline-primary">
               <input type="file" id="fileUpload" name="fileUpload" style="display: none;" onchange="handleFileUpload()">
-              <img src="images/camera.png" alt="Camera Icon" class="camera-icon"> Lampiran
+              <img src="resources/views/images/camera.png" alt="Camera Icon" class="camera-icon"> Lampiran
             </label>
             <!-- Placeholder for checkmark -->
             <span id="upload-status" style="display: none; margin-left: 10px;">✅</span>
@@ -161,7 +162,7 @@
 
           <!-- Robot Illustration -->
           <div class="illustration-container">
-            <img src="images/robot.png" alt="Robot Illustration" class="img-fluid">
+            <img src="resources/views/images/robot.png" alt="Robot Illustration" class="img-fluid">
           </div>
         </div>
       </div>
@@ -186,7 +187,7 @@
 
 <!-- Icon and Title Outside the Tracking Section -->
 <div class="container text-center my-5">
-  <img src="images/Tracking.png" alt="Tracking Icon" class="status-img mb-4" style="width: 100px; height: auto;">
+  <img src="resources/views/images/Tracking.png" alt="Tracking Icon" class="status-img mb-4" style="width: 100px; height: auto;">
   <!-- Change the text color to black -->
   <h2 class="status-text mb-4" style="color: black;">Lacak Status Pengaduan Anda</h2>
 </div>
@@ -221,15 +222,15 @@
       <!-- Adding more space between the status labels and the progress bar -->
       <div class="status-labels d-flex justify-content-between mt-5" style="gap: 50px; padding-top: 30px;">
         <span class="status-item d-flex align-items-center">
-          <img src="images/pengaduan_dikirim.png" alt="Pengaduan dikirim" class="status-icon me-2" style="width: 30px; height: auto;">
+          <img src="resources/views/images/pengaduan_dikirim.png" alt="Pengaduan dikirim" class="status-icon me-2" style="width: 30px; height: auto;">
           <span class="text-white fs-5">Pengaduan dikirim</span>
         </span>
         <span class="status-item d-flex align-items-center">
-          <img src="images/telahdiverivikasi.png" alt="Telah diverifikasi" class="status-icon me-2" style="width: 30px; height: auto;">
+          <img src="resources/views/images/telahdiverivikasi.png" alt="Telah diverifikasi" class="status-icon me-2" style="width: 30px; height: auto;">
           <span class="text-white fs-5">Telah diverifikasi</span>
         </span>
         <span class="status-item d-flex align-items-center">
-          <img src="images/telahdiselesaikan.png" alt="Telah diselesaikan" class="status-icon me-2" style="width: 30px; height: auto;">
+          <img src="resources/views/images/telahdiselesaikan.png" alt="Telah diselesaikan" class="status-icon me-2" style="width: 30px; height: auto;">
           <span class="text-white fs-5">Telah diselesaikan</span>
         </span>
       </div>
@@ -247,19 +248,19 @@
     <div id="pengaduanCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="images/berita1.png" class="d-block w-100" alt="Pengaduan 1">
+          <img src="resources/views/images/berita1.png" class="d-block w-100" alt="Pengaduan 1">
           <div class="carousel-caption d-none d-md-block">
             <h5>4 ekor Satwa yang Dilindungi berhasil dievakuasi sebelum sempat dijual oknum</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="images/berita2.png" class="d-block w-100" alt="Pengaduan 2">
+          <img src="resources/views/images/berita2.png" class="d-block w-100" alt="Pengaduan 2">
           <div class="carousel-caption d-none d-md-block">
             <h5>Pohon tumbang di jalan protokol berhasil dibersihkan dengan cepat oleh petugas</h5>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="images/berita3.png" class="d-block w-100" alt="Pengaduan 3">
+          <img src="resources/views/images/berita3.png" class="d-block w-100" alt="Pengaduan 3">
           <div class="carousel-caption d-none d-md-block">
             <h5>Kecelakaan lalu lintas yang melibatkan dua kendaraan berhasil ditangani</h5>
           </div>
