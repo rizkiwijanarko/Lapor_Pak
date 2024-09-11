@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class ReportController extends Controller
 {
@@ -347,14 +348,28 @@ class ReportController extends Controller
         return view('admin.detail-laporan', compact('report', 'formattedDate'));
     }
 
-    public function get_ai_summary()
+    public function get_ai_summary(Request $request)
     {
+        $question = $request->input('question', 'apa itu javascript');
 
-        $question = 'apa itu javascript';
+        $client = new Client();
+        $response = $client->post('https://api.openai.com/v1/chat/completions', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+                'Content-Type' => 'application/json',
+            ],
+            'json' => [
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                    ['role' => 'user', 'content' => $question],
+                ],
+                'max_tokens' => 150,
+            ],
+        ]);
 
-        // operasi ai nya
-
-        $summary = 'hasil';
+        $data = json_decode($response->getBody(), true);
+        $summary = $data['choices'][0]['message']['content'];
 
         return response()->json(['summary' => $summary]);
     }
