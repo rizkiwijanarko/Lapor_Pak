@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class ReportController extends Controller
 {
@@ -253,14 +254,23 @@ class ReportController extends Controller
     }
 
     public function get_ai_summary()
-    {
+{
+    $question = 'apa itu javascript';
 
-        $question = 'apa itu javascript';
+    $client = new Client();
+    $response = $client->post('https://api-inference.huggingface.co/models/gpt2', [
+        'headers' => [
+            'Authorization' => 'Bearer ' . env('HUGGINGFACE_API_KEY'),
+            'Content-Type' => 'application/json',
+        ],
+        'json' => [
+            'inputs' => $question,
+        ],
+    ]);
 
-        // operasi ai nya
+    $data = json_decode($response->getBody(), true);
+    $summary = $data[0]['generated_text'];
 
-        $summary = 'hasil';
-
-        return response()->json(['summary' => $summary]);
-    }
+    return response()->json(['summary' => $summary]);
+}
 }

@@ -105,3 +105,5 @@ Route::get('/send-mail', function () {
 
     return 'Email sent successfully using Resend SMTP!';
 });
+
+Route::get('/ai-summary', 'ReportController@get_ai_summary');
