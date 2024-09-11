@@ -345,26 +345,31 @@ class ReportController extends Controller
         return view('admin.detail-laporan', compact('report', 'formattedDate'));
     }
 
-    public function get_ai_summary()
-{
-    $question = 'apa itu javascript';
+    public function get_ai_summary(Request $request)
+    {
+        $question = $request->input('question', 'apa itu javascript');
 
-    $client = new Client();
-    $response = $client->post('https://api-inference.huggingface.co/models/gpt2', [
-        'headers' => [
-            'Authorization' => 'Bearer ' . env('HUGGINGFACE_API_KEY'),
-            'Content-Type' => 'application/json',
-        ],
-        'json' => [
-            'inputs' => $question,
-        ],
-    ]);
+        $client = new Client();
+        $response = $client->post('https://api.openai.com/v1/chat/completions', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+                'Content-Type' => 'application/json',
+            ],
+            'json' => [
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                    ['role' => 'user', 'content' => $question],
+                ],
+                'max_tokens' => 150,
+            ],
+        ]);
 
-    $data = json_decode($response->getBody(), true);
-    $summary = $data[0]['generated_text'];
+        $data = json_decode($response->getBody(), true);
+        $summary = $data['choices'][0]['message']['content'];
 
-    return response()->json(['summary' => $summary]);
-}
+        return response()->json(['summary' => $summary]);
+    }
 
     public function update_status(Request $request)
     {
